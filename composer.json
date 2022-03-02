@@ -1,0 +1,54 @@
+{
+    "name": "boesing/laminas-diactoros-multipart",
+    "description": "Multipart PSR-7 stream factories based on PSR-17 factories of `laminas-diactoros`.",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "laminas",
+        "psr-17",
+        "psr-7",
+        "multipart"
+    ],
+    "support": {
+        "issues": "https://github.com/boesing/laminas-diactoros-multipart/issues",
+        "source": "https://github.com/boesing/laminas-diactoros-multipart"
+    },
+    "require": {
+        "php": "^7.3 || ~8.0.0 || ~8.1.0"
+    },
+    "require-dev": {
+        "laminas/laminas-coding-standard": "~2.1.4",
+        "lctrs/psalm-psr-container-plugin": "^1.6",
+        "phpunit/phpunit": "^9.5",
+        "psalm/plugin-phpunit": "^0.16.1",
+        "vimeo/psalm": "^4.22"
+    },
+    "autoload": {
+        "psr-4": {
+            "Boesing\\Laminas\\Diactoros\\Multipart\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Boesing\\Laminas\\Diactoros\\Multipart\\": "test/unit"
+        }
+    },
+    "extra": {
+        "laminas": {
+            "module": "Boesing\\Laminas\\Diactoros\\Multipart",
+            "config-provider": "Boesing\\Laminas\\Diactoros\\Multipart\\ConfigProvider"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "scripts": {
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "test": "phpunit --colors=always",
+        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
+    }
+}
