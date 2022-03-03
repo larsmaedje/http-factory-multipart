@@ -16,5 +16,13 @@
     <file>test</file>
 
     <!-- Include all rules from Laminas Coding Standard -->
-    <rule ref="LaminasCodingStandard"/>
+    <rule ref="LaminasCodingStandard">
+        <!-- I don't care about line-length -->
+        <exclude name="Generic.Files.LineLength.TooLong"/>
+        <!-- We do use psalm here so the codestandard is not needed for this -->
+        <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingAnyTypeHint"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingAnyTypeHint"/>
+        <!-- Codestandard thinks that a data provider must match an object name in case sensitivity -->
+        <exclude name="SlevomatCodingStandard.Namespaces.UnusedUses.MismatchingCaseSensitivity"/>
+    </rule>
 </ruleset>

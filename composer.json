@@ -1,22 +1,28 @@
 {
-    "name": "boesing/laminas-diactoros-multipart",
-    "description": "Multipart PSR-7 stream factories based on PSR-17 factories of `laminas-diactoros`.",
+    "name": "boesing/http-factory-multipart",
+    "description": "Multipart PSR-7 stream factories based on PSR-17 factories.",
     "license": "BSD-3-Clause",
     "keywords": [
-        "laminas",
         "psr-17",
         "psr-7",
         "multipart"
     ],
     "support": {
-        "issues": "https://github.com/boesing/laminas-diactoros-multipart/issues",
-        "source": "https://github.com/boesing/laminas-diactoros-multipart"
+        "issues": "https://github.com/boesing/http-factory-multipart/issues",
+        "source": "https://github.com/boesing/http-factory-multipart"
     },
     "require": {
-        "php": "^7.3 || ~8.0.0 || ~8.1.0"
+        "php": "^7.3 || ~8.0.0 || ~8.1.0",
+        "psr/http-factory": "^1.0",
+        "psr/http-message": "^1.0",
+        "symfony/mime": "^5.4 || ^6.1",
+        "symfony/polyfill-php80": "^1.24",
+        "webmozart/assert": "^1.10"
     },
     "require-dev": {
         "laminas/laminas-coding-standard": "^2.3",
+        "laminas/laminas-diactoros": "^2.8",
+        "laminas/laminas-servicemanager": "^3.7",
         "lctrs/psalm-psr-container-plugin": "^1.6",
         "phpunit/phpunit": "^9.5",
         "psalm/plugin-phpunit": "^0.16.1",
@@ -24,19 +30,26 @@
     },
     "autoload": {
         "psr-4": {
-            "Boesing\\Laminas\\Diactoros\\Multipart\\": "src/"
+            "Boesing\\Psr\\Http\\Message\\Multipart\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Boesing\\Laminas\\Diactoros\\Multipart\\": "test/unit"
+            "Boesing\\Psr\\Http\\Message\\Multipart\\": [
+                "test/unit",
+                "test/integration"
+            ]
         }
     },
     "extra": {
         "laminas": {
-            "module": "Boesing\\Laminas\\Diactoros\\Multipart",
-            "config-provider": "Boesing\\Laminas\\Diactoros\\Multipart\\ConfigProvider"
+            "module": "Boesing\\Psr\\Http\\Message\\Multipart",
+            "config-provider": "Boesing\\Psr\\Http\\Message\\Multipart\\ConfigProvider"
         }
+    },
+    "conflict": {
+        "laminas/laminas-modulemanager": "<2.10",
+        "laminas/laminas-config-aggregator": "<1.3"
     },
     "config": {
         "sort-packages": true,
