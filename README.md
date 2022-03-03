@@ -1,17 +1,17 @@
-# laminas-diactoros-multipart
+# http-factory-multipart
 
-[![Build Status](https://github.com/boesing/laminas-diactoros-multipart/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/boesing/laminas-diactoros-multipart/actions/workflows/continuous-integration.yml)
+[![Build Status](https://github.com/boesing/http-factory-multipart/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/boesing/http-factory-multipart/actions/workflows/continuous-integration.yml)
 
-This library provides a multipart stream builder based on `laminas/laminas-diactoros`.
+This component provides multipart factories using PSR-17 & PSR-7 interfaces.
 
 ## Installation
 
 Run the following to install this library:
 
 ```bash
-$ composer require boesing/laminas-diactoros-multipart
+$ composer require boesing/http-factory-multipart
 ```
 
 ## Support
 
-- [Issues](https://github.com/boesing/laminas-diactoros-multipart/issues/)
+- [Issues](https://github.com/boesing/http-factory-multipart/issues/)
