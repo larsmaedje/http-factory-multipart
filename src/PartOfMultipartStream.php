@@ -10,27 +10,16 @@ use const SEEK_SET;
 
 final class PartOfMultipartStream implements PartOfMultipartStreamInterface
 {
-    /** @var non-empty-string */
-    private $name;
-
-    /** @var StreamInterface */
-    private $stream;
-
-    /** @var string */
-    private $filename;
-    /** @var array<non-empty-string,non-empty-string> */
-    private $headers;
-
     /**
      * @param non-empty-string $name
      * @param array<non-empty-string,non-empty-string> $headers
      */
-    public function __construct(string $name, StreamInterface $stream, string $filename = '', array $headers = [])
-    {
-        $this->name     = $name;
-        $this->stream   = $stream;
-        $this->filename = $filename;
-        $this->headers  = $headers;
+    public function __construct(
+        private readonly string $name,
+        private readonly StreamInterface $stream,
+        private readonly string $filename = '',
+        private readonly array $headers = []
+    ) {
     }
 
     public function getFilename(): string
@@ -53,12 +42,12 @@ final class PartOfMultipartStream implements PartOfMultipartStreamInterface
         return $this->name;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return (string) $this->stream;
     }
 
-    public function close()
+    public function close(): void
     {
         $this->stream->close();
     }
@@ -68,22 +57,22 @@ final class PartOfMultipartStream implements PartOfMultipartStreamInterface
         return $this->stream->detach();
     }
 
-    public function getSize()
+    public function getSize(): ?int
     {
         return $this->stream->getSize();
     }
 
-    public function tell()
+    public function tell(): int
     {
         return $this->stream->tell();
     }
 
-    public function eof()
+    public function eof(): bool
     {
         return $this->stream->eof();
     }
 
-    public function isSeekable()
+    public function isSeekable(): bool
     {
         return $this->stream->isSeekable();
     }
@@ -98,27 +87,27 @@ final class PartOfMultipartStream implements PartOfMultipartStreamInterface
         $this->stream->rewind();
     }
 
-    public function isWritable()
+    public function isWritable(): bool
     {
         return $this->stream->isWritable();
     }
 
-    public function write($string)
+    public function write($string): int
     {
         return $this->stream->write($string);
     }
 
-    public function isReadable()
+    public function isReadable(): bool
     {
         return $this->stream->isReadable();
     }
 
-    public function read($length)
+    public function read($length): string
     {
         return $this->stream->read($length);
     }
 
-    public function getContents()
+    public function getContents(): string
     {
         return $this->stream->getContents();
     }
