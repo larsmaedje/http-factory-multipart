@@ -77,7 +77,7 @@ final class PartOfMultipartStream implements PartOfMultipartStreamInterface
         return $this->stream->isSeekable();
     }
 
-    public function seek($offset, $whence = SEEK_SET): void
+    public function seek(int $offset, int $whence = SEEK_SET): void
     {
         $this->stream->seek($offset, $whence);
     }
@@ -92,7 +92,7 @@ final class PartOfMultipartStream implements PartOfMultipartStreamInterface
         return $this->stream->isWritable();
     }
 
-    public function write($string): int
+    public function write(string $string): int
     {
         return $this->stream->write($string);
     }
@@ -102,7 +102,7 @@ final class PartOfMultipartStream implements PartOfMultipartStreamInterface
         return $this->stream->isReadable();
     }
 
-    public function read($length): string
+    public function read(int $length): string
     {
         return $this->stream->read($length);
     }
@@ -112,7 +112,7 @@ final class PartOfMultipartStream implements PartOfMultipartStreamInterface
         return $this->stream->getContents();
     }
 
-    public function getMetadata($key = null)
+    public function getMetadata(?string $key = null)
     {
         return $this->stream->getMetadata($key);
     }
