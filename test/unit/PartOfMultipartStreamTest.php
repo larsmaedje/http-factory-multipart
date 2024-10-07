@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
 use Stringable;
 
-use function assert;
 use function bin2hex;
 use function random_bytes;
 
@@ -31,9 +30,8 @@ final class PartOfMultipartStreamTest extends TestCase
         parent::setUp();
         $this->stream = $this->createMock(StreamInterface::class);
         $name         = bin2hex(random_bytes(10));
-        assert($name !== '');
-        $this->name = $name;
-        $this->part = new PartOfMultipartStream($this->name, $this->stream, '', []);
+        $this->name   = $name;
+        $this->part   = new PartOfMultipartStream($this->name, $this->stream, '', []);
     }
 
     public function testWillReturnExpectedName(): void
