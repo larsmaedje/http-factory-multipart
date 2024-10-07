@@ -37,6 +37,7 @@ final class ConfigProviderIntegrationTest extends TestCase
 
         $dependencies = array_replace_recursive((new \Laminas\Diactoros\ConfigProvider())->getDependencies(), $dependencies);
 
+        /** @psalm-suppress InvalidArgument There is no type specified in {@see ConfigProvider} yet */
         yield ServiceManager::class => [
             new ServiceManager($dependencies),
             $serviceNames,
