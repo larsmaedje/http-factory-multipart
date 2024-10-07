@@ -40,7 +40,6 @@ final class ConfigProviderIntegrationTest extends TestCase
         /** @var ServiceManagerConfigurationType $dependencies */
         $dependencies = array_replace_recursive($dependenciesFromDiactoros, $dependencies);
 
-        /** @psalm-suppress InvalidArgument Psalm seems to a bug, I might report that once I got some feedback. */
         yield ServiceManager::class => [
             new ServiceManager($dependencies),
             $serviceNames,
