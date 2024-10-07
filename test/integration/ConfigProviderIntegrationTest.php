@@ -30,6 +30,7 @@ final class ConfigProviderIntegrationTest extends TestCase
      */
     public static function containerProvider(): Generator
     {
+        /** @psalm-suppress InvalidArgument Psalm seems to a bug, I might report that once I got some feedback. */
         $dependencies = self::extractDependenciesFromConfigProvider(new ConfigProvider());
         $serviceNames = self::extractServiceNamesFromDependencyConfiguration($dependencies);
 
@@ -39,7 +40,7 @@ final class ConfigProviderIntegrationTest extends TestCase
         /** @var ServiceManagerConfigurationType $dependencies */
         $dependencies = array_replace_recursive($dependenciesFromDiactoros, $dependencies);
 
-        /** @psalm-suppress ArgumentTypeCoercion There is no type specified in {@see ConfigProvider} yet */
+        /** @psalm-suppress InvalidArgument Psalm seems to a bug, I might report that once I got some feedback. */
         yield ServiceManager::class => [
             new ServiceManager($dependencies),
             $serviceNames,

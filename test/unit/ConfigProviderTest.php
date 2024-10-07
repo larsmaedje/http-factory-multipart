@@ -13,17 +13,10 @@ final class ConfigProviderTest extends TestCase
 {
     use DependenciesFromConfigProviderExtractionTrait;
 
-    private ConfigProvider $configProvider;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->configProvider = new ConfigProvider();
-    }
-
     public function testReturnsExpectedServiceDependencies(): void
     {
-        $dependencies = $this->extractDependenciesFromConfigProvider($this->configProvider);
+        /** @psalm-suppress InvalidArgument Psalm seems to a bug, I might report that once I got some feedback. */
+        $dependencies = $this->extractDependenciesFromConfigProvider(new ConfigProvider());
 
         self::assertArrayHasKey('factories', $dependencies);
         self::assertIsArray($dependencies['factories']);

@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace Boesing\Psr\Http\Message\Multipart;
 
-use Laminas\ServiceManager\ConfigInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Symfony\Component\Mime\MimeTypes;
 
 /**
- * @psalm-import-type ServiceManagerConfigurationType from ConfigInterface
+ * @psalm-type ServiceManagerConfigurationType = array{
+ *     factories: non-empty-array<non-empty-string,callable(ContainerInterface):object>
+ * }
  */
 final class ConfigProvider
 {
     /**
-     * @return array{dependencies: ServiceManagerConfigurationType,...}
+     * @return array{dependencies: ServiceManagerConfigurationType}
      */
     public function __invoke(): array
     {
