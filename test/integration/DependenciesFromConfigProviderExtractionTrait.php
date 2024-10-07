@@ -16,7 +16,7 @@ trait DependenciesFromConfigProviderExtractionTrait
     /**
      * @param callable():array $configProvider
      */
-    private function extractDependenciesFromConfigProvider(callable $configProvider): array
+    private static function extractDependenciesFromConfigProvider(callable $configProvider): array
     {
         $config = $configProvider();
         self::assertArrayHasKey('dependencies', $config);

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Boesing\Psr\Http\Message\Multipart;
 
 use Generator;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Mime\MimeTypes;
 
@@ -25,8 +26,8 @@ final class SymfonyMimeMimeTypeGuesserIntegrationTest extends TestCase
 
     /**
      * @param non-empty-string $filename
-     * @dataProvider mimeTypes
      */
+    #[DataProvider('mimeTypes')]
     public function testCanDetectMimeType(string $filename, string $mimeType): void
     {
         if (! $this->mimeTypes->isGuesserSupported()) {
@@ -37,9 +38,10 @@ final class SymfonyMimeMimeTypeGuesserIntegrationTest extends TestCase
     }
 
     /**
+     * @psalm-suppress PossiblyUnusedMethod Used in phpunit attribute {@see DataProvider}, not yet supported by psalm plugin.
      * @return Generator<non-empty-string, array{0: non-empty-string, 1: string}>
      */
-    public function mimeTypes(): Generator
+    public static function mimeTypes(): Generator
     {
         yield 'text from file without extension' => [
             __DIR__ . '/resources/textfile',

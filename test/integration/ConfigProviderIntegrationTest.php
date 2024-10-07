@@ -6,6 +6,7 @@ namespace Boesing\Psr\Http\Message\Multipart;
 
 use Generator;
 use Laminas\ServiceManager\ServiceManager;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 
@@ -19,12 +20,13 @@ final class ConfigProviderIntegrationTest extends TestCase
     use DependenciesFromConfigProviderExtractionTrait;
 
     /**
+     * @psalm-suppress PossiblyUnusedMethod Used in phpunit attribute {@see DataProvider}, not yet supported by psalm plugin.
      * @return Generator<non-empty-string, array{0: ContainerInterface, 1: non-empty-list<string>}>
      */
-    public function containerProvider(): Generator
+    public static function containerProvider(): Generator
     {
-        $dependencies = $this->extractDependenciesFromConfigProvider(new ConfigProvider());
-        $serviceNames = $this->extractServiceNamesFromDependencyConfiguration($dependencies);
+        $dependencies = self::extractDependenciesFromConfigProvider(new ConfigProvider());
+        $serviceNames = self::extractServiceNamesFromDependencyConfiguration($dependencies);
 
         $dependencies = array_replace_recursive((new \Laminas\Diactoros\ConfigProvider())->getDependencies(), $dependencies);
 
@@ -37,8 +39,8 @@ final class ConfigProviderIntegrationTest extends TestCase
 
     /**
      * @psalm-param non-empty-list<string> $services
-     * @dataProvider containerProvider
      */
+    #[DataProvider('containerProvider')]
     public function testDependenciesCanBeResolvedByContainer(ContainerInterface $container, array $services): void
     {
         foreach ($services as $service) {
@@ -52,7 +54,7 @@ final class ConfigProviderIntegrationTest extends TestCase
      * @psalm-return non-empty-list<string>
      * @psalm-suppress MixedReturnTypeCoercion We do explicitly assert stuff with phpunit and thus we can suppress here
      */
-    private function extractServiceNamesFromDependencyConfiguration(array $dependencies): array
+    private static function extractServiceNamesFromDependencyConfiguration(array $dependencies): array
     {
         $factories = $dependencies['factories'] ?? [];
         self::assertIsArray($factories);
