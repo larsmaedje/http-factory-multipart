@@ -18,15 +18,6 @@ final class ConfigProviderIntegrationTest extends TestCase
 {
     use DependenciesFromConfigProviderExtractionTrait;
 
-    /** @var ConfigProvider */
-    private $configProvider;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->configProvider = new ConfigProvider();
-    }
-
     /**
      * @return Generator<non-empty-string, array{0: ContainerInterface, 1: non-empty-list<string>}>
      */
@@ -37,7 +28,7 @@ final class ConfigProviderIntegrationTest extends TestCase
 
         $dependencies = array_replace_recursive((new \Laminas\Diactoros\ConfigProvider())->getDependencies(), $dependencies);
 
-        /** @psalm-suppress InvalidArgument There is no type specified in {@see ConfigProvider} yet */
+        /** @psalm-suppress ArgumentTypeCoercion There is no type specified in {@see ConfigProvider} yet */
         yield ServiceManager::class => [
             new ServiceManager($dependencies),
             $serviceNames,

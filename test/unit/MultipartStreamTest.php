@@ -26,8 +26,7 @@ final class MultipartStreamTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $uniqid = uniqid();
-        self::assertTrue($uniqid !== '');
+        $uniqid               = uniqid();
         $this->boundary       = $uniqid;
         $this->writableStream = $this->createMock(StreamInterface::class);
         $this->writableStream

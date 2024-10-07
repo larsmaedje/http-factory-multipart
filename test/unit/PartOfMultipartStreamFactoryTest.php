@@ -31,6 +31,15 @@ final class PartOfMultipartStreamFactoryTest extends TestCase
         self::assertSame('foo', $part->getName());
     }
 
+    public function testCanCreatePartOfMultipartWithFilename(): void
+    {
+        $stream = $this->createMock(StreamInterface::class);
+        $part   = $this->factory->createPartOfMultipart('foo', $stream, 'foo.txt');
+        self::assertSame($stream, $part->getStream());
+        self::assertSame('foo', $part->getName());
+        self::assertSame('foo.txt', $part->getFilename());
+    }
+
     public function testWillCreateContentDispositionHeader(): void
     {
         $stream = $this->createMock(StreamInterface::class);
