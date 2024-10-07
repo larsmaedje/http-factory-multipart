@@ -81,7 +81,6 @@ final class MultipartStreamFactoryTest extends TestCase
         $this->expectExceptionMessage('empty');
 
         $boundary = uniqid();
-        self::assertTrue($boundary !== '');
         $this->multipartStreamFactory->createMultipartStream($boundary);
     }
 

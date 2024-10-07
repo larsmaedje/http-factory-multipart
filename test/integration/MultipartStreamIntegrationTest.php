@@ -79,8 +79,7 @@ final class MultipartStreamIntegrationTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $uniqid = uniqid();
-        self::assertTrue($uniqid !== '');
+        $uniqid               = uniqid();
         $this->boundary       = $uniqid;
         $this->writableStream = new Stream('php://temp', 'r+');
     }
