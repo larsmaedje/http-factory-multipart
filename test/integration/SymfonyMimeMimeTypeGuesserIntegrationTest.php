@@ -38,6 +38,7 @@ final class SymfonyMimeMimeTypeGuesserIntegrationTest extends TestCase
     }
 
     /**
+     * @psalm-suppress PossiblyUnusedMethod Used in phpunit attribute {@see DataProvider}, not yet supported by psalm plugin.
      * @return Generator<non-empty-string, array{0: non-empty-string, 1: string}>
      */
     public static function mimeTypes(): Generator
